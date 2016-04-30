@@ -16,6 +16,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'http://rubygems.org/gems/flash_speaker'
   spec.license       = 'MIT'
 
+  spec.files         = ['lib/flash_speaker.rb']
   spec.require_paths = ['lib']
 
   spec.add_dependency 'rails-i18n', '~> 4.0.0'
