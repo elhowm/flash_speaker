@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['elhowm@gmail.com']
   spec.summary       = 'Simplify organizing your flash messages'
   spec.description   = <<-TEXT
-    Help to organize and minimize boring flash messages code in controllers.\q
+    Help to organize and minimize boring flash messages code in controllers.
     Also it requires using internationalization i18n gem.
   TEXT
   spec.homepage      = 'http://rubygems.org/gems/flash_speaker'
