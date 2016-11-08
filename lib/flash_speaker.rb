@@ -2,7 +2,8 @@ module FlashSpeaker
   def attach_message(success_flag, entity_errors = nil, t_params = {})
     flash_type = success_flag ? :success : :failed
     add_entity_errors(entity_errors, t_params) if entity_errors.present?
-    add_flash(message(flash_type, t_params), flash_type, t_params)
+    current_message = message(flash_type, t_params)
+    add_flash(current_message, flash_type, t_params)
   end
 
   private
