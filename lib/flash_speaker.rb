@@ -1,14 +1,25 @@
 module FlashSpeaker
   def attach_message(success_flag, entity_errors = nil, t_params = {})
     flash_type = success_flag ? :success : :failed
-    if entity_errors.present?
-      full_messages = t_params.delete(:full_messages)
-      flash[:errors] = serialize_errors(entity_errors, full_messages)
-    end
-    flash[flash_type] = message(flash_type, t_params)
+    add_entity_errors(entity_errors, t_params) if entity_errors.present?
+    add_flash(message(flash_type, t_params), flash_type, t_params)
   end
 
   private
+
+  def add_entity_errors(entity_errors, t_params)
+    full_messages = t_params.delete(:full_messages)
+    errors = serialize_errors(entity_errors, full_messages)
+    add_flash(errors, :errors, t_params)
+  end
+
+  def add_flash(content, flash_type, t_params)
+    if t_params[:now].present?
+      flash.now[flash_type] = content
+    else
+      flash[flash_type] = content
+    end
+  end
 
   def serialize_errors(entity_errors, full_messages = false)
     return entity_errors unless entity_errors.kind_of? ActiveModel::Errors
